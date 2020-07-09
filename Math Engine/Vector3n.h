@@ -21,6 +21,9 @@ namespace MathEng {
 		Vector3n(const Vector3n& v);
 		Vector3n& operator=(const Vector3n& v);
 
+		// Print
+		void print();
+
 		// Addition
 		void operator+=(const Vector3n& v);
 		Vector3n operator+(const Vector3n& v);
@@ -49,5 +52,7 @@ namespace MathEng {
 		// Normalize
 		void normalize();
 
+		// Rotate Vector about axis
+		Vector3n rotateVectorAboutAxis(float angle, Vector3n& axis);
 	};
 }

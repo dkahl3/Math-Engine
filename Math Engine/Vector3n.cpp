@@ -1,6 +1,11 @@
 #include "Vector3n.h"
+#include "Quaternion.h"
 #include "Math.h"
 #include <iostream>
+
+// Vector Class Implementation
+// These are used for representing the magnitude and direction of something
+
 namespace MathEng {
 
 	// Constructors & Destructor
@@ -19,6 +24,11 @@ namespace MathEng {
 		z = v.z;
 
 		return *this;
+	}
+
+	// Print implementation
+	void Vector3n::print() {
+		std::cout << "[ " << x << ", " << y << ", " << z << " ]" << std::endl;
 	}
 
 	// Addition implementation
@@ -67,7 +77,7 @@ namespace MathEng {
 
 	// Dot Product implementation
 	float Vector3n::dot(Vector3n v) {
-		return x * v.x + y * v.y + z * v.y;
+		return x * v.x + y * v.y + z * v.z;
 	}
 
 	// Cross Product implementation
@@ -76,7 +86,7 @@ namespace MathEng {
 		float y1 = x * v.z - v.x * z;
 		float z1 = x * v.y - v.x * y;
 
-		return Vector3n(x1, y1, z1);
+		return Vector3n(x1, -y1, z1);
 	}
 
 	// Magnitude implementation
@@ -94,5 +104,29 @@ namespace MathEng {
 			z = z / mag;
 		}
 		
+	}
+
+	// Rotate Vector about axis implementation
+	Vector3n Vector3n::rotateVectorAboutAxis(float angle, Vector3n& axis) {
+		// Convert to a pure quaternion
+		Quaternion p(0, *(this));
+
+		// Normalize axis
+		axis.normalize();
+
+		// Create real quaternion
+		Quaternion q(angle, axis);
+
+		// Convert quaternion to unit norm quaternion
+		q.convertToUnitNorm();
+
+		// Get inverse of the quaternion
+		Quaternion qInverse = q.inverse();
+
+		// Rotate quaternion
+		Quaternion rotatedVector = q * p * qInverse;
+
+		// Return the vector part of the quaternion
+		return rotatedVector.v;
 	}
 }

@@ -124,11 +124,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Matrix3n.h" />
+    <ClInclude Include="Quaternion.h" />
     <ClInclude Include="Vector3n.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matrix3n.cpp" />
+    <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="Vector3n.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -2,6 +2,9 @@
 #include "Vector3n.h"
 #include <iostream>
 
+// Matrix Class Implementation
+// This class will be useful for computing different forms of transformations on 3D opjects in virtual space
+
 namespace MathEng {
 	
 	// Contructor implementations
